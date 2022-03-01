@@ -18,6 +18,9 @@
 		5745EDE727CDE82300E043A2 /* MyCoinPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745EDE627CDE82300E043A2 /* MyCoinPageViewController.swift */; };
 		5745EDE927CDEE3500E043A2 /* BookmarkPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745EDE827CDEE3500E043A2 /* BookmarkPageViewModel.swift */; };
 		574D768727CA009E00D155A0 /* BookmarkPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D768627CA009E00D155A0 /* BookmarkPageViewController.swift */; };
+		576C9EED27CE51E0007B4EB4 /* AddCoinPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C9EEC27CE51E0007B4EB4 /* AddCoinPageViewController.swift */; };
+		576C9EEF27CE523A007B4EB4 /* MyCoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C9EEE27CE523A007B4EB4 /* MyCoinViewModel.swift */; };
+		576C9EF127CE525B007B4EB4 /* MyCoinPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C9EF027CE525B007B4EB4 /* MyCoinPageViewModel.swift */; };
 		57E0F13E27B6336A00FFF958 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E0F13D27B6336A00FFF958 /* AppDelegate.swift */; };
 		57E0F14227B6336A00FFF958 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E0F14127B6336A00FFF958 /* HomeViewController.swift */; };
 		57E0F14727B6336B00FFF958 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57E0F14627B6336B00FFF958 /* Assets.xcassets */; };
@@ -51,6 +54,9 @@
 		5745EDE627CDE82300E043A2 /* MyCoinPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinPageViewController.swift; sourceTree = "<group>"; };
 		5745EDE827CDEE3500E043A2 /* BookmarkPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPageViewModel.swift; sourceTree = "<group>"; };
 		574D768627CA009E00D155A0 /* BookmarkPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPageViewController.swift; sourceTree = "<group>"; };
+		576C9EEC27CE51E0007B4EB4 /* AddCoinPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinPageViewController.swift; sourceTree = "<group>"; };
+		576C9EEE27CE523A007B4EB4 /* MyCoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewModel.swift; sourceTree = "<group>"; };
+		576C9EF027CE525B007B4EB4 /* MyCoinPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinPageViewModel.swift; sourceTree = "<group>"; };
 		57E0F13A27B6336A00FFF958 /* CoinPrice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinPrice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E0F13D27B6336A00FFF958 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57E0F14127B6336A00FFF958 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				5745EDE627CDE82300E043A2 /* MyCoinPageViewController.swift */,
+				576C9EEC27CE51E0007B4EB4 /* AddCoinPageViewController.swift */,
+				576C9EEE27CE523A007B4EB4 /* MyCoinViewModel.swift */,
+				576C9EF027CE525B007B4EB4 /* MyCoinPageViewModel.swift */,
 			);
 			path = MyCoinPage;
 			sourceTree = "<group>";
@@ -403,8 +412,11 @@
 				5745EDE927CDEE3500E043A2 /* BookmarkPageViewModel.swift in Sources */,
 				47C464C8CAF04D47D8BA0666 /* CoinModel.swift in Sources */,
 				574D768727CA009E00D155A0 /* BookmarkPageViewController.swift in Sources */,
+				576C9EF127CE525B007B4EB4 /* MyCoinPageViewModel.swift in Sources */,
+				576C9EED27CE51E0007B4EB4 /* AddCoinPageViewController.swift in Sources */,
 				47C46979971D9335D88954C7 /* CoinListViewModel.swift in Sources */,
 				47C46EDF6877FA4FD987B95E /* CoinService.swift in Sources */,
+				576C9EEF27CE523A007B4EB4 /* MyCoinViewModel.swift in Sources */,
 				47C4602DC2B45395C9C04C9C /* CoinViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
