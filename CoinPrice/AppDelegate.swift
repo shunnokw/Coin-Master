@@ -17,14 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        
         let tabController = UITabBarController()
         
         let cs = CoinService()
         
         let tab1Nav = UINavigationController(rootViewController: HomeViewController(viewModel: CoinListViewModel(coinService: cs)))
         let tab2Nav = UINavigationController(rootViewController: BookmarkPageViewController(viewModel: BookmarkPageViewModel(coinService: cs)))
-        let tab3Nav = UINavigationController(rootViewController: MyCoinPageViewController())
+        let tab3Nav = UINavigationController(rootViewController: MyCoinPageViewController(viewModel: MyCoinPageViewModel(coinService: cs)))
         
         if #available(iOS 13.0, *) {
             let barAppearance = UINavigationBarAppearance()

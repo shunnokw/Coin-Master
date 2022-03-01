@@ -25,9 +25,4 @@ struct CoinViewModel {
         self.coin = coin
         self.isBookmarked = isBookmarked
     }
-
-    func copy(with zone: NSZone? = nil) -> Any {
-        let copy = CoinViewModel(coin: coin, isBookmarked: isBookmarked)
-        return copy
-    }
 }

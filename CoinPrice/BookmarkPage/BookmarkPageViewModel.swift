@@ -24,7 +24,7 @@ class BookmarkPageViewModel {
         return uuids
     }
     
-    func getBookmark() {
+    func getBookmark(completion: () -> Void) {
         let uuids = getUuids()
         if !uuids.isEmpty {
             do {
@@ -39,6 +39,7 @@ class BookmarkPageViewModel {
                 }
                 
                 coinViewModels.onNext(cvm)
+                completion()
             } catch {
                 print(error)
             }

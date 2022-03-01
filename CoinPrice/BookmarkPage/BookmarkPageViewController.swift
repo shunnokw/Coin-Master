@@ -16,6 +16,8 @@ class BookmarkPageViewController: UIViewController, UITableViewDelegate {
         return table
     }()
     
+    private let refreshControl = UIRefreshControl()
+
     let viewModel: BookmarkPageViewModel
     
     let bag = DisposeBag()
@@ -40,8 +42,22 @@ class BookmarkPageViewController: UIViewController, UITableViewDelegate {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         
-        viewModel.getBookmark()
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(refreshCoinData(_:)), for: .valueChanged)
+        
+        viewModel.getBookmark(completion: {})
         bindTableData()
+    }
+    
+    @objc private func refreshCoinData(_ sender: Any) {
+        viewModel.getBookmark(completion: {
+            self.refreshControl.endRefreshing()
+        })
     }
     
     func bindTableData() {
