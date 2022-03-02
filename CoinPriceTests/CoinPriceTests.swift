@@ -57,9 +57,8 @@ class CoinPriceTests: XCTestCase {
         to = scheduler.createObserver([CoinViewModel].self)
         _ = coinListViewModel.coinViewModels.subscribe(to)
         scheduler.start()
-//        coinListViewModel.fetchCoin()
-        coinListViewModel.coinViewModels.onNext([CoinViewModel(coin: myCoin, isBookmarked: false)])
-        XCTAssertEqual(to.events.first?.value.element?.first!.displayText, [CoinViewModel(coin: myCoin, isBookmarked: false)].first?.displayText)
+        coinListViewModel.fetchCoin()
+        XCTAssertEqual(to.events[1].value.element?.first!.displayText, [CoinViewModel(coin: myCoin, isBookmarked: false)].first?.displayText)
     }
 }
 
