@@ -11,13 +11,14 @@ import RxSwift
 class BookmarkPageViewModel {
     let coinViewModels = BehaviorSubject<[CoinViewModel]>(value: [])
     let coinService: CoinServiceProtocol
+    let userDefaults: UserDefaults
     
-    init(coinService: CoinServiceProtocol) {
+    init(coinService: CoinServiceProtocol, userDefaults: UserDefaults) {
         self.coinService = coinService
+        self.userDefaults = userDefaults
     }
     
     func getUuids() -> [String] {
-        let userDefaults = UserDefaults.standard
         guard let uuids: [String] = userDefaults.stringArray(forKey: "uuids") else {
             return []
         }

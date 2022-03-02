@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cs = CoinService()
         
         let tab1Nav = UINavigationController(rootViewController: HomeViewController(viewModel: CoinListViewModel(coinService: cs)))
-        let tab2Nav = UINavigationController(rootViewController: BookmarkPageViewController(viewModel: BookmarkPageViewModel(coinService: cs)))
+        let tab2Nav = UINavigationController(rootViewController: BookmarkPageViewController(viewModel: BookmarkPageViewModel(coinService: cs, userDefaults: UserDefaults.standard)))
         let tab3Nav = UINavigationController(rootViewController: MyCoinPageViewController(viewModel: MyCoinPageViewModel(coinService: cs)))
         
         if #available(iOS 13.0, *) {

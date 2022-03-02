@@ -14,6 +14,7 @@ import RxSwift
 @testable import CoinPrice
 
 // Refresh function should also be tested
+// Bookmark
 
 class CoinPriceTests: XCTestCase {
     
@@ -25,7 +26,6 @@ class CoinPriceTests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         myCoin = Coin(uuid: "123", symbol: "", name: "123", color: "", iconURL: "", marketCap: "", price: "123", listedAt: 1, tier: 1, change: "", rank: 1, sparkline: [""], lowVolume: false, coinrankingURL: "", the24HVolume: "", btcPrice: "")
         coinService = MockCoinService(coin: myCoin)
         coinListViewModel = CoinListViewModel(coinService: coinService)
@@ -34,7 +34,6 @@ class CoinPriceTests: XCTestCase {
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         coinListViewModel = nil
         coinService = nil
         scheduler = nil
@@ -110,7 +109,6 @@ class MockCoinListViewModel : CoinListViewModelProtocol {
     }
     
     func fetchCoin() {
-//        coinStream.onNext([myCoin])
         coinViewModels.onNext([CoinViewModel(coin: myCoin, isBookmarked: false)])
     }
 }
