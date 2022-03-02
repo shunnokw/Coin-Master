@@ -1,4 +1,4 @@
-# Coin Base
+# Coin Master
 A small side project to view cryptocurrency price using dependency injection MVVM RxSwift with Unit Test
 
 ![CleanShot 2022-03-02 at 00 01 32](https://user-images.githubusercontent.com/33548195/156173525-33a9f7ad-41f1-460d-b266-97f0c45b0a52.png)
