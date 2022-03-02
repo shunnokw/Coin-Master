@@ -22,7 +22,7 @@ class CoinPriceTests: XCTestCase {
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
     var myCoin: Coin!
-
+    
     override func setUpWithError() throws {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -32,7 +32,7 @@ class CoinPriceTests: XCTestCase {
         scheduler = TestScheduler(initialClock: 0, resolution: 1)
         disposeBag = DisposeBag()
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         coinListViewModel = nil
@@ -47,37 +47,25 @@ class CoinPriceTests: XCTestCase {
         let mockVM = MockCoinListViewModel(coin: myCoin)
         let view = HomeViewController(viewModel: mockVM)
         view.bindTableData()
+        mockVM.fetchCoin()
         let cell0 = view.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? MyTableCell
-        XCTAssertEqual(cell0?.titleLabel.text, "Name: 123\nPrice: 123")
+        XCTAssertEqual(cell0?.titleLabel.text, "Name: 123\nPrice: $123 USD")
     }
-
+    
     func testCoinListViewModel() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-        
         var to : TestableObserver<[CoinViewModel]>
         to = scheduler.createObserver([CoinViewModel].self)
-        _ = coinListViewModel.coinViewModels().subscribe(to)
+        _ = coinListViewModel.coinViewModels.subscribe(to)
         scheduler.start()
-        coinListViewModel.fetchCoin()
-        XCTAssertEqual(to.events.first?.value.element?.first!.displayText, [CoinViewModel(coin: myCoin)].first?.displayText)
+//        coinListViewModel.fetchCoin()
+        coinListViewModel.coinViewModels.onNext([CoinViewModel(coin: myCoin, isBookmarked: false)])
+        XCTAssertEqual(to.events.first?.value.element?.first!.displayText, [CoinViewModel(coin: myCoin, isBookmarked: false)].first?.displayText)
     }
-
-//    func testPerformanceExample() throws {
-//        // This is an example of a performance test case.
-//        measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
-
 }
 
 class MockCoinService: CoinServiceProtocol {
     var hideLoading = BehaviorRelay<Bool>(value: false)
-    var coinStream = PublishSubject<[Coin]>()
+    var coinStream = BehaviorSubject<[Coin]>(value: [])
     
     var myCoin : Coin
     
@@ -91,24 +79,39 @@ class MockCoinService: CoinServiceProtocol {
 }
 
 class MockCoinListViewModel : CoinListViewModelProtocol {
-    var hideLoading = BehaviorRelay<Bool>(value: false)
     
-    private var coinStream = PublishSubject<[Coin]>()
+    func sortAZ() {
+        
+    }
+    
+    func sortZA() {
+        
+    }
+    
+    func sortLow2High() {
+        
+    }
+    
+    func sortHigh2Low() {
+        
+    }
+    
+    func addRemoveBookmark(uuid: String) {
+        
+    }
+    
+    var hideLoading = BehaviorRelay<Bool>(value: false)
+    var coinViewModels = BehaviorSubject<[CoinViewModel]>(value: [])
+    private var coinStream = BehaviorSubject<[Coin]>(value: [])
     private var myCoin: Coin
-
+    private let bag = DisposeBag()
+    
     init(coin: Coin) {
         self.myCoin = coin
     }
-
+    
     func fetchCoin() {
-        coinStream.onNext([myCoin])
-    }
-
-    func coinViewModels() -> Observable<[CoinViewModel]> {
-        coinStream.map {
-            $0.map {
-                CoinViewModel(coin: $0)
-            }
-        }
+//        coinStream.onNext([myCoin])
+        coinViewModels.onNext([CoinViewModel(coin: myCoin, isBookmarked: false)])
     }
 }
