@@ -39,6 +39,16 @@
                ReferencedContainer = "container:CoinPrice.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "574FEF3D27D2032300344F91"
+               BuildableName = "CoinPriceUITests.xctest"
+               BlueprintName = "CoinPriceUITests"
+               ReferencedContainer = "container:CoinPrice.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

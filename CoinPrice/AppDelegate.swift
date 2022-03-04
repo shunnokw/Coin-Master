@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tab1Nav = UINavigationController(rootViewController: HomeViewController(viewModel: CoinListViewModel(coinService: cs)))
         let tab2Nav = UINavigationController(rootViewController: BookmarkPageViewController(viewModel: BookmarkPageViewModel(coinService: cs, userDefaults: UserDefaults.standard)))
-        let tab3Nav = UINavigationController(rootViewController: MyCoinPageViewController(viewModel: MyCoinPageViewModel(coinService: cs)))
+        let tab3Nav = UINavigationController(rootViewController: MyCoinPageViewController(viewModel: MyCoinPageViewModel(coinService: cs, userDefaults: UserDefaults.standard)))
         
         if #available(iOS 13.0, *) {
             let barAppearance = UINavigationBarAppearance()

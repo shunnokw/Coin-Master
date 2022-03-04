@@ -20,14 +20,17 @@ class MyCoinPageTest: XCTestCase {
     var myCoin: Coin!
     var scheduler: TestScheduler!
     var disposeBag: DisposeBag!
-    
+    private var userDefaults: UserDefaults!
+
     override func setUpWithError() throws {
         try super.setUpWithError()
         
         myCoin = Coin(uuid: "123", symbol: "", name: "123", color: "", iconURL: "", marketCap: "", price: "123", listedAt: 1, tier: 1, change: "", rank: 1, sparkline: [""], lowVolume: false, coinrankingURL: "", the24HVolume: "", btcPrice: "")
         coinService = MockCoinService(coin: myCoin)
-        myCoinPageViewModel = MyCoinPageViewModel(coinService: coinService)
+        userDefaults = UserDefaults(suiteName: "Test")
+        myCoinPageViewModel = MyCoinPageViewModel(coinService: coinService, userDefaults: userDefaults)
         scheduler = TestScheduler(initialClock: 0, resolution: 1)
+        userDefaults.set(["123":"11"], forKey: "MyCoins")
     }
 
     override func tearDownWithError() throws {
@@ -36,6 +39,7 @@ class MyCoinPageTest: XCTestCase {
         scheduler = nil
         disposeBag = nil
         myCoin = nil
+        userDefaults.removePersistentDomain(forName: "Test")
         super.tearDown()
     }
 
@@ -45,11 +49,20 @@ class MyCoinPageTest: XCTestCase {
         XCTAssertEqual(result[0].uuid, "123")
     }
     
-    func testGetMyCoin() throws {
-        myCoinPageViewModel.getMyCoin {}
+    func testSaveMyCoin() throws {
+        myCoinPageViewModel.saveMyCoin(uuid: "123", quantity: 11)
+        let dict = userDefaults.object(forKey: "MyCoins") as! [String : String]
+        XCTAssertEqual(dict, ["123": "11"])
     }
     
-    func testSaveMyCoin() throws {
-        myCoinPageViewModel.saveMyCoin(uuid: <#T##String#>, quantity: <#T##Decimal#>)
+    func testGetMyCoin() throws {
+        var to : TestableObserver<[MyCoinViewModel]>
+        to = scheduler.createObserver([MyCoinViewModel].self)
+        _ = myCoinPageViewModel.coinViewModels.subscribe(to)
+        scheduler.start()
+        coinService.coinStream.onNext([myCoin])
+        myCoinPageViewModel.getMyCoin {}
+        XCTAssertEqual(to.events[1].value.element?.first!.displayText, [CoinViewModel(coin: myCoin, isBookmarked: false)].first?.displayText)
+        XCTAssertEqual(to.events[1].value.element?.first!.quantityString, "11")
     }
 }

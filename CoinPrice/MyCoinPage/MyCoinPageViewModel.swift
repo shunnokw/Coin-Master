@@ -14,8 +14,12 @@ final class MyCoinPageViewModel {
     
     let coinService: CoinServiceProtocol
     
-    init(coinService: CoinServiceProtocol) {
+    let userDefaults: UserDefaults
+
+    
+    init(coinService: CoinServiceProtocol, userDefaults: UserDefaults) {
         self.coinService = coinService
+        self.userDefaults = userDefaults
     }
     
     func getCoins() -> [Coin] {
@@ -36,7 +40,6 @@ final class MyCoinPageViewModel {
             uuid: "\(quantity)"
         ]
         
-        let userDefaults = UserDefaults.standard
         if userDefaults.object(forKey: "MyCoins") == nil {
             userDefaults.setValue(dict, forKey: "MyCoins")
         } else {
@@ -47,7 +50,6 @@ final class MyCoinPageViewModel {
     }
     
     func getMyCoin(completion: () -> Void) {
-        let userDefaults = UserDefaults.standard
         if userDefaults.object(forKey: "MyCoins") != nil {
             let dict = userDefaults.object(forKey: "MyCoins") as! [String : String]
             var cvm = [MyCoinViewModel]()

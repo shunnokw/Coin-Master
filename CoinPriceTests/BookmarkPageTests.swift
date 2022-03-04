@@ -26,8 +26,6 @@ class BookmarkPageTests: XCTestCase {
         try super.setUpWithError()
         
         userDefaults = UserDefaults(suiteName: "Test")
-        userDefaults.removePersistentDomain(forName: "Test")
-        
         myCoin = Coin(uuid: "123", symbol: "", name: "123", color: "", iconURL: "", marketCap: "", price: "123", listedAt: 1, tier: 1, change: "", rank: 1, sparkline: [""], lowVolume: false, coinrankingURL: "", the24HVolume: "", btcPrice: "")
         coinService = MockCoinService(coin: myCoin)
         bookmarkViewModel = BookmarkPageViewModel(coinService: coinService, userDefaults: userDefaults)
@@ -42,6 +40,7 @@ class BookmarkPageTests: XCTestCase {
         scheduler = nil
         disposeBag = nil
         myCoin = nil
+        userDefaults.removePersistentDomain(forName: "Test")
         super.tearDown()
     }
 
