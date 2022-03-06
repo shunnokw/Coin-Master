@@ -11,5 +11,5 @@ A small side project to view cryptocurrency price using dependency injection MVV
 ![CleanShot 2022-03-02 at 00 02 11](https://user-images.githubusercontent.com/33548195/156173623-44f3291f-68e7-4592-bd53-b4a4c67415e8.png)
 
 ## Unit Test
-46.7% Coverage with all ViewModel being tested
+46.7% Coverage with all business logic in viewmodel being tested
 ![CleanShot 2022-03-04 at 19 17 56](https://user-images.githubusercontent.com/33548195/156725852-bebb8cc7-c261-43a9-9ee1-cc46501fe52f.png)
