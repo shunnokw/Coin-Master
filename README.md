@@ -2,7 +2,7 @@
 A small side project to view cryptocurrency price using dependency injection MVVM RxSwift with Unit Test
 
 ## Data Source
-Data come from fee public Coinranking API 
+Data came from fee public Coinranking API 
 
 https://developers.coinranking.com/api/documentation
 
